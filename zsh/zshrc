@@ -1,0 +1,22 @@
+# Customize to your needs...
+
+# added by Anaconda3 4.1.1 installer
+bindkey "^R" history-incremental-search-backward
+
+alias vi='nvim'
+alias vim='nvim'
+alias glg="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold
+green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+
+ssh-tmux() { ssh "$*" -t tmux -CC attach || tmux -CC }
+
+export PATH="/usr/local/anaconda3/bin:$PATH"
+export DYLD_FALLBACK_LIBRARY_PATH="/user/local/anaconda3/lib/:$DYLD_FALLBACK_LIBRARY_PATH"
+export SPARK_HOME="/Users/guillem/spark/current/"
+export JAVA_HOME=$(/usr/libexec/java_home)
+export AIRFLOW_HOME='/Users/guillem/data/airflow/'
+export EDITOR=vi
+source ~/.insurance_env.sh
+
+ssh-add -A
+source ~/.data_env.sh
