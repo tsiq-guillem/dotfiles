@@ -1,4 +1,12 @@
-# Customize to your needs...
+export CCP_USER='guillem'
+SSH_KEY='/Users/guillem/.ssh/id_rsa'
+
+ssh-add -K $SSH_KEY
+export CCP_KEY=$SSH_KEY
+
+autoload -Uz promptinit
+promptinit
+prompt kylewest
 
 # added by Anaconda3 4.1.1 installer
 bindkey "^R" history-incremental-search-backward
@@ -18,5 +26,3 @@ export AIRFLOW_HOME='/Users/guillem/data/airflow/'
 export EDITOR=vi
 source ~/.insurance_env.sh
 
-ssh-add -A
-source ~/.data_env.sh
