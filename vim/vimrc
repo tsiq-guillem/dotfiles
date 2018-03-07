@@ -1,3 +1,4 @@
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -7,11 +8,25 @@ call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
+
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tpope/vim-surround'
 "
+" plugins for navigation
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+
+" plugins for development
+Plugin 'vim-syntastic/syntastic'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'tpope/vim-fugitive'
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+
 " plugins for org mode
 Plugin 'vim-orgmode'
 Plugin 'calendar.vim'
@@ -21,10 +36,20 @@ Plugin 'speeddating.vim'
 Plugin 'jpo/vim-railscasts-theme'
 Plugin 'chriskempson/base16-vim'
 
+" Latex
+Plugin 'LaTeX-Box-Team/LaTeX-Box'
+
+" Python
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'nvie/vim-flake8'
+
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+filetype plugin on
 
+set spell spelllang=en_gb
 set enc=utf-8
 set fenc=utf-8
 set termencoding=utf-8
@@ -46,12 +71,20 @@ syntax on
 colorscheme base16-default-dark
 " turn line numbers on
 set number
+set relativenumber
 " highlight matching braces
 set showmatch
 " intelligent comments
 set comments=sl:/*,mb:\ *,elx:\ */
 " automatically remove trailing whitespace
 autocmd BufWritePre *.py :%s/\s\+$//e
+" more natural splits
+set splitbelow
+set splitright
+" Enable folding with the spacebar
+set foldmethod=indent
+set foldlevel=99
+nnoremap <space> za
 
 "" Org mode configurations
 :let g:org_todo_keywords = ['TODO(t)', 'INPROGRESS(s)', 'BLOCKED(b)', '|', 'DONE(d)', 'CANCELLED(c)']
@@ -67,4 +100,58 @@ let g:airline_detect_whitespace=0
 "macvim settings
 set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
 
+" Disable Arrow keys in Escape mode
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+
+" Disable Arrow keys in Insert mode
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
+
+" relative number switch
+function! g:NumberToggle()
+  if(&relativenumber == 1)
+    set norelativenumber
+  else
+    set relativenumber
+  endif
+endfunc
+
+map <C-n> :call g:NumberToggle()<CR>
+
+" easy movements betweens splits
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
+nnoremap <C-H> <C-W>h
+
+" redraw remap
+nnoremap <F6> :redraw!<CR>
+"
+" latex reference compile
+let g:Tex_MultipleCompileFormats='pdf,bib,pdf'
+
+" development commands
+" Snippets Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" UltiSnips triggering
+let g:UltiSnipsExpandTrigger='<C-j>'
+let g:UltiSnipsJumpForwardTrigger='<C-j>'
+let g:UltiSnipsJumpBackwardTrigger='<C-k>'
+
+" python development commands
+let python_highlight_all = 1
+
+" navigation commands
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " Linux/MacOSX
+map <F2> :NERDTreeToggle<CR>
 

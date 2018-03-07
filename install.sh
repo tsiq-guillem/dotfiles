@@ -1,5 +1,6 @@
 #!/bin/bash
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+git clone git@github.com:martinlindhe/base16-iterm2.git ~/.base16-iterm2
 
 mkdir ~/.config
 ln -sv $SCRIPT_PATH/vim/vimrc ~/.vimrc
