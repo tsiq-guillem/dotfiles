@@ -136,6 +136,9 @@ nnoremap <F6> :redraw!<CR>
 let g:Tex_MultipleCompileFormats='pdf,bib,pdf'
 
 " development commands
+let g:python3_host_prog='/Users/guillem/anaconda3/bin/python3'
+nnoremap <leader>gt :YcmCompleter GoTo<CR>
+
 " Snippets Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -150,6 +153,11 @@ let g:UltiSnipsJumpBackwardTrigger='<C-k>'
 
 " python development commands
 let python_highlight_all = 1
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " navigation commands
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " Linux/MacOSX
